@@ -5,6 +5,7 @@ import { AppStore } from "../../../redux/store";
 import FilterMenu from "../../../components/organisms/FilterMenu";
 import { useFilterContext } from "../../../context/filter.context";
 import ImageItem from "./ImageItem";
+import importItem from "../../../utilities/importItem";
 
 const Dashboard = () => {
 	const techStacks = useSelector((store: AppStore) => store.techstacks);
@@ -14,7 +15,18 @@ const Dashboard = () => {
 	const [currentImage, setCurrentImage] = useState(0);
   	const [isViewerOpen, setIsViewerOpen] = useState(false);
 	const [filteredProjects, setFilteredProjects] = useState(projects);
-	const images = (filteredProjects.map(project => project.pictures.map(picture => `/src/assets/project-images/${picture}`))).flat(1).reverse();
+	const [loadedImages, setLoadedImages] = useState<string[]>([]);
+	const images = (filteredProjects.map(project => project.pictures.map((picture) => `/src/assets/project-images/${picture}`))).flat(1).reverse();
+	
+	useEffect(() => {
+		// Function to load all images and set state
+		const loadAllImages = async () => {
+		  const imagePromises = images.map(image => importItem(image));
+		  const loadedImages = await Promise.all(imagePromises);
+		  setLoadedImages(loadedImages); // Filter out any nulls from failed loads
+		};
+		loadAllImages();
+	}, [images]); // Dependency array, re-run if images array changes
 
 	useEffect(() => {
 		if (filters.length === 0) {
@@ -42,7 +54,7 @@ const Dashboard = () => {
 				<h1 className="mt-[35px] text-[20px] font-bold">My Latest Work</h1>
 			</div>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-[20px] gap-[20px] w-full">
-  				{images.map((image, index) => (
+  				{loadedImages.map((image, index) => (
 					<ImageItem key={image} imgSrc={image} index={index} openImageViewer={openImageViewer} />
 				))}
 			</div>
