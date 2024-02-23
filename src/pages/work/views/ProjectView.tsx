@@ -40,7 +40,7 @@ const ProjectView = () => {
 					</div>
 					<div className="flex flex-wrap justify-center lg:justify-start mt-[20px] gap-[20px]">
 						{project.pictures.map((item, i) => (
-						<div key={i} className={`flex justify-center h-[80px] w-[80px] rounded-[10px] cursor-pointer ${i === picIndex ? 'border-[2px] border-[#000]' : ''}`} onClick={() => openImageViewer()}>
+						<div key={i} className={`flex justify-center h-[80px] w-[80px] rounded-[10px] cursor-pointer ${i === picIndex ? 'border-[2px] border-[#000]' : ''}`}>
 							<img 
 								src={new URL(`/src/assets/project-images/${item}`, import.meta.url).toString()}
 								className="m-auto max-h-[75px] rounded-[10px]"
