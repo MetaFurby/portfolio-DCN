@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom"
 import { Card, TagButton } from "../../../components/atoms"
 import { TechStack } from "../../../models"
-import { useRef } from "react"
-import { useIsVisible } from "../../../hooks/useIsVisible"
 type ProjectListItemProps = {
 	id: number
 	name: string
@@ -11,11 +9,9 @@ type ProjectListItemProps = {
 	techstacks: (TechStack | undefined) []
 }
 const ProjectListItem = ({id, name, duration, mainPicture, techstacks}: ProjectListItemProps) => {
-	const ref = useRef<HTMLDivElement>(null);
-	const isVisible = useIsVisible(ref);
   return (
 	<Link to={id.toString()}>
-		<Card className={`transition-colors duration-200 ease-in-out bg-white hover:bg-[#8DA9C4]/50 h-[100%] ${isVisible ? "opacity-100" : "opacity-0"}`} ref={ref}>
+		<Card className={`transition-colors duration-200 ease-in-out bg-white hover:bg-[#8DA9C4]/50 h-[100%]`}>
 			<img className="bg-[#F8F8F8] rounded-[10px] w-full h-[300px] object-contain" src={new URL(`/src/assets/project-images/${mainPicture}`, import.meta.url).toString()} alt={name} />
 			<h1 className="mt-[20px] text-[16px] text-center font-bold">{name}</h1>
 			<h3 className="mt-[10px] text-[14px] text-center text-black/50">{duration}</h3>
