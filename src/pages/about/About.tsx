@@ -16,7 +16,7 @@ const About = () => {
 		</div>
 		<div className="flex flex-wrap lg:flex-nowrap gap-[20px] p-[20px]">
 			<Card className="flex flex-wrap p-[20px] justify-center gap-[20px] bg-[#8DA9C4] w-full lg:w-[300px] h-fit shrink-0">
-				<img className="w-[150px] h-[150px] rounded-full" src={author.picture} alt={author.name} />
+				<img className="w-[150px] h-[150px] rounded-full" src={new URL(author.picture, import.meta.url).toString()} alt={author.name} />
 				<div>
 					<h1 className="font-bold text-[24px]">{author.name}</h1>
 					<h3 className="font-bold text-[18px] text-black/50">{author.role}</h3>
@@ -25,7 +25,7 @@ const About = () => {
 					<div className="flex gap-[20px] mt-[10px] text-[36px] justify-evenly">
 						<Link to={author.linkedln} target="_blank" rel="noopener noreferrer"><i className="devicon-linkedin-plain colored"></i></Link>
 						<Link to={author.github} target="_blank" rel="noopener noreferrer"><i className="devicon-github-original colored"></i></Link>
-						<Link to={author.resume} className="border-black border-[2px] mt-[5px] p-[10px] h-[40px] leading-[15px] rounded-[5px] text-[16px]" target="_blank" download>
+						<Link to={new URL(author.resume, import.meta.url)} className="border-black border-[2px] mt-[5px] p-[10px] h-[40px] leading-[15px] rounded-[5px] text-[16px]" target="_blank" download>
 							Resume
 						</Link>
 					</div>

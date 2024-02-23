@@ -13,7 +13,7 @@ const ProjectView = () => {
 	const projectStacks = project.techstacks.map(ts => techStacks.find(ts2 => ts2.id === ts))
 	const [picIndex, setPicIndex] = useState(0);
   	const [isViewerOpen, setIsViewerOpen] = useState(false);
-	const images = project.pictures.length > 0 ? project.pictures.map(pic => `/src/assets/project-images/${pic}`) : [project.mainPicture];
+	const images = project.pictures.length > 0 ? project.pictures.map(pic => new URL(`/src/assets/project-images/${pic}`, import.meta.url).toString()) : [new URL(`/src/assets/project-images/${project.mainPicture}`, import.meta.url).toString()];
 
 	const openImageViewer = useCallback(() => {
 		setIsViewerOpen(true);
@@ -34,7 +34,7 @@ const ProjectView = () => {
 				<div className="lg:col-span-2 ">
 					<div className="flex justify-center bg-[#f8f8f8] rounded-[10px] h-[500px] cursor-pointer" onClick={() => openImageViewer()}>
 						<img 
-							src={`/src/assets/project-images/${project.pictures.length > 0 ? project.pictures[picIndex] : project.mainPicture}`} 
+							src={new URL(`/src/assets/project-images/${project.pictures.length > 0 ? project.pictures[picIndex] : project.mainPicture}`, import.meta.url).toString()} 
 							className="m-auto max-h-[500px]" 
 							alt="project_img" />
 					</div>
@@ -42,7 +42,7 @@ const ProjectView = () => {
 						{project.pictures.map((item, i) => (
 						<div key={i} className={`flex justify-center h-[80px] w-[80px] rounded-[10px] cursor-pointer ${i === picIndex ? 'border-[2px] border-[#000]' : ''}`} onClick={() => openImageViewer()}>
 							<img 
-								src={`/src/assets/project-images/${item}`}
+								src={new URL(`/src/assets/project-images/${item}`, import.meta.url).toString()}
 								className="m-auto max-h-[75px] rounded-[10px]"
 								alt="project_img"
 								onMouseEnter={() => setPicIndex(i)}
