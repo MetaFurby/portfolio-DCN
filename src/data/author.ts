@@ -10,8 +10,8 @@ export const AuthorData : Author = {
 	email: 'd.r.colladonunez@gmail.com',
 	linkedln: 'https://www.linkedin.com/in/diego-collado-nunez-71aa18195/',
 	github: 'https://github.com/MetaFurby',
-	picture: '/src/assets/author/profilepic.jpg',
-	resume: '/src/assets/author/DiegoColladoResume2024.pdf',
+	picture: 'profilepic.jpg',
+	resume: 'DiegoColladoResume2024.pdf',
 	bio: `I’m a very flexible and self-critical developer with more than 7 years of experience working in Software development. I'm experienced working with teams to produce impactful, leading-edge websites that engage customers and deliver business results. My strongest feature as a full-stack developer is my proper use of design patterns to keep the code clean, organized, and maintainable. I always seek to learn new paradigms, methods and ways of thinking that help me improve both as a person and as a professional. I like to work in a team, solve problems, form friendships, and promote positive energies in my workplace.`,
 	workHistory: [{
 		id: 1,
